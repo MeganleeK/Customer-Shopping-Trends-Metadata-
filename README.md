@@ -46,6 +46,10 @@ The dataset contains **3,900 records** capturing:
 
 
 ---
+🌐 **Looker Studio Dashboard:** [View it here](https://lookerstudio.google.com/s/pOlgecNXpig)
+
+---
+
 
 ## 🙌 Credits  
 - **Dataset by:** BrightLight Tutorials  
