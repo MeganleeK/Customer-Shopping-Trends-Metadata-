@@ -1,0 +1,105 @@
+SELECT
+*
+FROM
+"SHOPPINGTRENDS"."CUSTOMER_SHOPPING_TRENDS"."SHOPPING_TRENDS"
+LIMIT
+10;
+
+SELECT DISTINCT gender
+FROM "SHOPPINGTRENDS"."CUSTOMER_SHOPPING_TRENDS"."SHOPPING_TRENDS";
+
+SELECT DISTINCT item_purchased
+FROM "SHOPPINGTRENDS"."CUSTOMER_SHOPPING_TRENDS"."SHOPPING_TRENDS";
+
+SELECT DISTINCT category
+FROM "SHOPPINGTRENDS"."CUSTOMER_SHOPPING_TRENDS"."SHOPPING_TRENDS";
+
+SELECT DISTINCT location
+FROM "SHOPPINGTRENDS"."CUSTOMER_SHOPPING_TRENDS"."SHOPPING_TRENDS";
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------EDA
+
+SELECT MAX(age)
+FROM "SHOPPINGTRENDS"."CUSTOMER_SHOPPING_TRENDS"."SHOPPING_TRENDS";
+
+
+SELECT MIN(age)
+FROM "SHOPPINGTRENDS"."CUSTOMER_SHOPPING_TRENDS"."SHOPPING_TRENDS";
+
+SELECT
+age,
+CASE
+WHEN age BETWEEN 18 AND 30 THEN 'Youth'
+WHEN age BETWEEN 31 AND 40 THEN 'Adult'
+WHEN age BETWEEN 41 AND 50 THEN 'Senior'
+ELSE 'Elder'
+END AS age_bucket
+FROM "SHOPPINGTRENDS"."CUSTOMER_SHOPPING_TRENDS"."SHOPPING_TRENDS";
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------AGE
+
+SELECT MAX("Purchase Amount (USD)")
+FROM "SHOPPINGTRENDS"."CUSTOMER_SHOPPING_TRENDS"."SHOPPING_TRENDS";
+
+SELECT MIN("Purchase Amount (USD)")
+FROM "SHOPPINGTRENDS"."CUSTOMER_SHOPPING_TRENDS"."SHOPPING_TRENDS";
+
+SELECT
+"Purchase Amount (USD)",
+CASE
+WHEN "Purchase Amount (USD)" BETWEEN 20 AND 30 THEN '01. 20-
+30: Low Spend'
+WHEN "Purchase Amount (USD)" BETWEEN 31 AND 50 THEN '02. 31-
+50: Medium Spend'
+WHEN "Purchase Amount (USD)" BETWEEN 51 AND 70 THEN '03. 51-
+70: HighSpend'
+ELSE '04. 70+ Very High spend'
+END AS spend_buckets
+FROM "SHOPPINGTRENDS"."CUSTOMER_SHOPPING_TRENDS"."SHOPPING_TRENDS";
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------SPENDING
+
+SELECT MIN(review_rating)
+FROM "SHOPPINGTRENDS"."CUSTOMER_SHOPPING_TRENDS"."SHOPPING_TRENDS";
+
+SELECT MAX (review_rating)
+FROM "SHOPPINGTRENDS"."CUSTOMER_SHOPPING_TRENDS"."SHOPPING_TRENDS";
+
+SELECT DISTINCT review_rating
+FROM "SHOPPINGTRENDS"."CUSTOMER_SHOPPING_TRENDS"."SHOPPING_TRENDS";
+
+SELECT
+review_rating,
+CASE
+WHEN review_rating <= 3.0 THEN 'Bad'
+WHEN review_rating >= 3.1 AND review_rating <=4.0 THEN
+'Neutral'
+ELSE 'Good'
+END AS review_rating_bucket
+FROM "SHOPPINGTRENDS"."CUSTOMER_SHOPPING_TRENDS"."SHOPPING_TRENDS";
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------REVIEW RATINGS
+SELECT
+TO_DATE(processdate) AS purchase_date,
+DAYNAME(TO_DATE(processdate)) AS day_name,
+MONTHNAME(TO_DATE(processdate)) AS month_name,
+TO_CHAR(TO_DATE(processdate), 'YYYY-MM') AS month_id,
+DAYOFMONTH(TO_DATE(processdate)) AS day_of_month,
+YEAR(TO_DATE(processdate)) AS year,
+FROM "SHOPPINGTRENDS"."CUSTOMER_SHOPPING_TRENDS"."SHOPPING_TRENDS";
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------DATES
+SELECT
+SUM("Purchase Amount (USD)") AS revenue,
+COUNT(DISTINCT "CUSTOMER_ID") AS Number_of_customers,
+"SUBSCRIPTION_STATUS",
+"SHIPPING_TYPE",
+"DISCOUNT_APPLIED",
+"PROMO_CODE_USED",
+"PAYMENT_METHOD",
+"FREQUENCY_OF_PURCHASES"
+FROM "SHOPPINGTRENDS"."CUSTOMER_SHOPPING_TRENDS"."SHOPPING_TRENDS"
+GROUP BY
+"SUBSCRIPTION_STATUS",
+"SHIPPING_TYPE",
+"DISCOUNT_APPLIED",
+"PROMO_CODE_USED",
+"PAYMENT_METHOD",
+"FREQUENCY_OF_PURCHASES";
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------AGGREGATION
