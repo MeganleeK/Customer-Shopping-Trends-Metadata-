@@ -18,7 +18,8 @@ The dataset contains **3,900 records** capturing:
 
 ## 🛠️ Tools Used  
 - **Microsoft Power BI** — for building an interactive, multi-page dashboard  
-- **Google Looker Studio** — for creating an alternative interactive version  
+- **Google Looker Studio** — for creating an alternative interactive version
+- ***Snowflake**- for sql codes
 
 
 ---
